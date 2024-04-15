@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const DivCard = styled.div`
   background-color: #334001;
-  border: 3px solid #000;
+  border: 3px solid #d2e7fc;
   padding: 20px;
   & h2 {
     font-weight: bold;
