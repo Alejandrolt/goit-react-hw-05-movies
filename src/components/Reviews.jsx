@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const DivReviews = styled.div`
   background-color: #f2d28b;
-  border: 3px solid #000;
+  border: 3px solid;
   padding: 20px;
   & h2 {
     font-weight: bold;

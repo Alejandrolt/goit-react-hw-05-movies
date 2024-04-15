@@ -15,7 +15,7 @@ const NavHeader = styled.nav`
   align-items: center;
   padding-left: 50px;
   gap: 50px;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid #d2e7fc;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
   & a {
     color: #fff;
