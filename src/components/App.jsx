@@ -29,7 +29,7 @@ const NavHeader = styled.nav`
       font-size: 25px;
     }
     &.active {
-      color: #334001;
+      color: #f2d28b;
     }
   }
 `;

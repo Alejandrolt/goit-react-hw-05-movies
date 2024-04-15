@@ -39,7 +39,7 @@ const DivContent = styled.div`
   }
 `;
 const DivInfo = styled.div`
-  background-color: #0081df;
+  background-color: #184475;
   height: 100%;
   align-item: center;
   padding: 30px;
