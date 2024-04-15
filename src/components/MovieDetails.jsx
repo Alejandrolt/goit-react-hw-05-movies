@@ -95,7 +95,7 @@ const MovieDetails = () => {
         )}
       </div>
       <DivInfo>
-        <h3>Additional information</h3>
+        <h3>Additional Information</h3>
         <ul>
           <li>
             <Link to="cast">Cast</Link>
