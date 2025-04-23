@@ -42,7 +42,7 @@ const DivInfo = styled.div`
   background-color: #d2e7fc;
   height: 100%;
   align-item: center;
-  padding: 30px;
+  padding: 10px;
   & h3 {
     font-size: 30px;
     font-family: cursive;
@@ -50,7 +50,7 @@ const DivInfo = styled.div`
 `;
 
 const MovieDetails = () => {
-  const API_KEY = 'ea4896c7073ba93706d570dd6a3e937d';
+  const API_KEY = '92a29a208697474804603c1dc44ad181';
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
 

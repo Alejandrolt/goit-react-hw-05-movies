@@ -28,7 +28,7 @@ const ItemCard = styled.li`
 `;
 
 const Cast = () => {
-  const API_KEY = 'ea4896c7073ba93706d570dd6a3e937d';
+  const API_KEY = '92a29a208697474804603c1dc44ad181';
   const { movieId } = useParams();
   const [cast, setCast] = useState([]);
 

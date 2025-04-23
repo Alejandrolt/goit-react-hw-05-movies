@@ -8,15 +8,12 @@ import Reviews from './Reviews';
 import styled from 'styled-components';
 
 const NavHeader = styled.nav`
-  background-color: #184475;
   height: 70px;
   display: flex;
   justify-content: start;
   align-items: center;
   padding-left: 50px;
   gap: 50px;
-  border-bottom: 2px solid #d2e7fc;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
   & a {
     color: #fff;
     text-decoration: none;
@@ -38,8 +35,8 @@ const App = () => {
   return (
     <div>
       <NavHeader>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/movies">Movie</NavLink>
+        <NavLink to="/movies">Home</NavLink>
+        <NavLink to="/">Movie</NavLink>
       </NavHeader>
       <Routes>
         <Route path="/" element={<Home />} />

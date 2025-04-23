@@ -5,7 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f2cf8b;
+  background-image: url(/public/img/pelis.jpg);
+  background-position: center;
+  background-size: cover;
   font-size: 18px;
 }
 
