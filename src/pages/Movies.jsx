@@ -5,19 +5,25 @@ import styled from 'styled-components';
 const DivHome = styled.div`
   & h2 {
     font-size: 50px;
-    font-family: cursive;
-    margin-left: 460px;
+    font-family: Baskerville;
     margin-top: 100px;
-    color: white;
+    text-align: center;
+    text-shadow: 1px 1px 4px Red;
+    margin-bottom: 30px;
   }
+
   & input {
-    margin-left: 450px;
-    margin-right: 10px;
+    margin-top: 20px;
     height: 27px;
-    width: 300px;
+    width: 80%;
+    max-width: 300px;
     padding-left: 10px;
     border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
   }
+
   & button {
     background-color: #184475;
     color: #fff;
@@ -25,34 +31,100 @@ const DivHome = styled.div`
     padding: 10px 20px;
     border-radius: 10px;
     cursor: pointer;
+    margin-top: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     &:hover {
       opacity: 0.9;
       padding: 12px 22px;
     }
   }
+
   & ul {
     list-style: none;
     padding: 0;
     margin-top: 30px;
-    margin-left: 450px;
     color: white;
   }
+
   & li {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    justify-content: center;
   }
+
   & img {
     width: 80px;
     border-radius: 8px;
     margin-right: 15px;
   }
+
   & a {
-    color: white;
+    color: black;
     font-size: 18px;
     text-decoration: none;
     &:hover {
       text-decoration: underline;
+    }
+  }
+
+  // Media Queries para hacerlo responsivo
+  @media (max-width: 768px) {
+    & h2 {
+      font-size: 35px;
+    }
+
+    & input {
+      width: 90%;
+      max-width: 250px;
+    }
+
+    & button {
+      width: 90%;
+      max-width: 250px;
+    }
+
+    & ul {
+      padding-left: 0;
+    }
+
+    & li {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    & img {
+      width: 60px;
+    }
+
+    & a {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    & h2 {
+      font-size: 28px;
+    }
+
+    & input {
+      width: 90%;
+      max-width: 200px;
+    }
+
+    & button {
+      width: 90%;
+      max-width: 200px;
+    }
+
+    & li {
+      margin-bottom: 15px;
+    }
+
+    & a {
+      font-size: 14px;
     }
   }
 `;
@@ -66,10 +138,13 @@ const Home = () => {
     if (searchQuery.trim() === '') return;
 
     fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchQuery}`
+      `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&query=${searchQuery}`
     )
       .then(response => response.json())
-      .then(data => setSearchResults(data.results))
+      .then(data => {
+        const movies = data.results.filter(item => item.media_type === 'movie');
+        setSearchResults(movies);
+      })
       .catch(error => console.error('Error searching movies:', error));
   };
 
@@ -105,11 +180,12 @@ const Home = () => {
             {movie.poster_path && (
               <img
                 src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                alt={movie.title}
+                alt={movie.title || movie.name}
               />
             )}
             <Link to={`/movies/${movie.id}`}>
-              {movie.title} ({movie.release_date?.slice(0, 4)})
+              {movie.title || movie.name} (
+              {(movie.release_date || movie.first_air_date)?.slice(0, 4)})
             </Link>
           </li>
         ))}

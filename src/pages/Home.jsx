@@ -3,19 +3,13 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const DivMovies = styled.div`
-  padding: 20px;
-  background-image: url('/img/fondo.png');
-  background-size: cover;
-  background-position: center;
-  min-height: 100vh;
-
   & h2 {
     font-weight: bold;
     font-size: 40px;
-    font-family: cursive;
-    color: white;
-    text-shadow: 1px 1px 4px black;
+    font-family: Baskerville;
+    text-shadow: 1px 1px 4px Red;
     margin-bottom: 30px;
+    margin-left: 450px;
   }
 
   & ul {
@@ -57,6 +51,34 @@ const DivMovies = styled.div`
   & a:hover {
     text-decoration: underline;
   }
+  @media (max-width: 1024px) {
+    & li {
+      width: 150px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    & li {
+      width: 130px;
+    }
+    & h2 {
+      font-size: 28px;
+      margin-left: 200px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    & li {
+      width: 100px;
+    }
+    & h2 {
+      font-size: 24px;
+      margin-left: 30px;
+    }
+    & a {
+      font-size: 14px;
+    }
+  }
 `;
 
 const Movies = () => {
@@ -64,20 +86,33 @@ const Movies = () => {
   const [popularMovies, setPopularMovies] = useState([]);
 
   useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`)
-      .then(response => response.json())
-      .then(data => {
-        const filteredMovies = data.results.filter(
-          movie => movie.title || movie.name
-        );
-        setPopularMovies(filteredMovies);
-      })
-      .catch(error => console.error('Error fetching popular movies:', error));
+    const fetchAllTrending = async () => {
+      try {
+        let allResults = [];
+
+        for (let page = 1; page <= 10; page++) {
+          const response = await fetch(
+            `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&page=${page}`
+          );
+          const data = await response.json();
+          const filtered = data.results.filter(
+            item => item.media_type === 'movie'
+          );
+          allResults = [...allResults, ...filtered];
+        }
+
+        setPopularMovies(allResults);
+      } catch (error) {
+        console.error('Error fetching popular movies and series:', error);
+      }
+    };
+
+    fetchAllTrending();
   }, []);
 
   return (
     <DivMovies>
-      <h2>Popular Movies</h2>
+      <h2>Movies & TV Shows</h2>
       <ul>
         {popularMovies.map(movie => (
           <li key={movie.id}>
@@ -87,13 +122,11 @@ const Movies = () => {
                 alt={movie.title || movie.name}
               />
             ) : (
-              <img
-                src="/img/placeholder.png" // Asegúrate de tener esta imagen o cambia la URL
-                alt="No poster"
-              />
+              <img src="/public/img/placeholder.png" alt="No poster" />
             )}
             <Link to={`/movies/${movie.id}`}>
-              {movie.title || movie.name} <br />
+              {movie.title || movie.name}
+              <br />
               <small>
                 (
                 {(movie.release_date || movie.first_air_date || 'N/A').slice(

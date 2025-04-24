@@ -7,45 +7,86 @@ const DivButton = styled.div`
   justify-content: end;
   align-items: center;
   height: 50px;
+  padding: 0 20px;
+
   & button {
     background-color: #184475;
     color: #fff;
     border: none;
     padding: 10px 20px;
     border-radius: 10px;
-    margin-right: 30px;
+    margin-right: 10px;
+
     &:hover {
       opacity: 0.9;
       padding: 12px 22px;
     }
   }
+
+  @media (max-width: 768px) {
+    justify-content: center;
+    height: auto;
+    margin-bottom: 10px;
+  }
 `;
+
 const DivContent = styled.div`
   display: flex;
   flex-direction: row;
   gap: 15px;
   margin: 30px;
+
   & h2 {
     font-weight: bold;
     font-size: 40px;
     font-family: cursive;
   }
+
   & h3 {
     font-size: 30px;
     font-family: cursive;
   }
+
   & img {
     padding-right: 40px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    & h2 {
+      font-size: 28px;
+    }
+
+    & h3 {
+      font-size: 24px;
+    }
+
+    & img {
+      padding-right: 0;
+      max-width: 80%;
+    }
   }
 `;
+
 const DivInfo = styled.div`
   background-color: #d2e7fc;
   height: 100%;
-  align-item: center;
-  padding: 10px;
+  padding: 10px 20px;
+
   & h3 {
     font-size: 30px;
     font-family: cursive;
+  }
+
+  @media (max-width: 768px) {
+    padding: 20px;
+    text-align: center;
   }
 `;
 
@@ -65,7 +106,6 @@ const MovieDetails = () => {
     <div>
       <DivButton>
         <Link to="/">
-          {' '}
           <button>Go Back</button>
         </Link>
       </DivButton>

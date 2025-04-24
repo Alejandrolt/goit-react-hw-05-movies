@@ -15,18 +15,19 @@ const NavHeader = styled.nav`
   padding-left: 50px;
   gap: 50px;
   & a {
-    color: #fff;
+    color: black;
     text-decoration: none;
     font-family: new times roman;
-    font-size: 23px;
+    font-size: 30px;
     font-weight: bold;
-    text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.3),
-      0px -4px 10px rgba(255, 255, 255, 0.3);
+    text-shadow: 2px 7px 5px rgba(255, 0, 0, 0.59),
+      0px -4px 10px rgba(255, 0, 0, 0.59);
     &:hover {
       font-size: 25px;
     }
     &.active {
-      color: #f2d28b;
+      color: rgb(248, 12, 4);
+      text-shadow: 2px 7px 5px rgb(0, 0, 0);
     }
   }
 `;
@@ -35,12 +36,12 @@ const App = () => {
   return (
     <div>
       <NavHeader>
-        <NavLink to="/movies">Home</NavLink>
-        <NavLink to="/">Movie</NavLink>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/movies">Movies</NavLink>
       </NavHeader>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<Movies />} />
+        <Route path="/" element={<Movies />} />
+        <Route path="/movies" element={<Home />} />
         <Route path="/movies/:movieId" element={<MovieDetails />}>
           <Route path="/movies/:movieId/cast" element={<Cast />} />
           <Route path="/movies/:movieId/reviews" element={<Reviews />} />
