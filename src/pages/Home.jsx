@@ -73,7 +73,7 @@ const DivMovies = styled.div`
     }
     & h2 {
       font-size: 24px;
-      margin-left: 30px;
+      margin-left: 160px;
     }
     & a {
       font-size: 14px;
