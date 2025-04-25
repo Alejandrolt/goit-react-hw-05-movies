@@ -1,51 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const DivHome = styled.div`
+  min-height: 100vh;
+  background-color: black;
+  color: white;
+  padding: 40px 20px;
+  box-sizing: border-box;
+
   & h2 {
     font-size: 50px;
     font-family: Baskerville;
-    margin-top: 100px;
     text-align: center;
-    text-shadow: 1px 1px 4px Red;
+    text-shadow: 1px 1px 4px red;
     margin-bottom: 30px;
-  }
-
-  & input {
-    margin-top: 20px;
-    height: 27px;
-    width: 80%;
-    max-width: 300px;
-    padding-left: 10px;
-    border-radius: 5px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-  }
-
-  & button {
-    background-color: #184475;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-top: 10px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    &:hover {
-      opacity: 0.9;
-      padding: 12px 22px;
-    }
   }
 
   & ul {
     list-style: none;
     padding: 0;
     margin-top: 30px;
-    color: white;
   }
 
   & li {
@@ -62,69 +37,52 @@ const DivHome = styled.div`
   }
 
   & a {
-    color: black;
+    color: white;
     font-size: 18px;
     text-decoration: none;
     &:hover {
       text-decoration: underline;
     }
   }
+`;
 
-  // Media Queries para hacerlo responsivo
-  @media (max-width: 768px) {
-    & h2 {
-      font-size: 35px;
-    }
+const SearchBox = styled.div`
+  background-image: ${({ bg }) =>
+    bg
+      ? `url('https://image.tmdb.org/t/p/original${bg}')`
+      : `url('https://image.tmdb.org/t/p/original/9ZpKrS2hWz2toYOu2aKIsngG3eN.jpg')`};
+  background-size: cover;
+  background-position: center;
+  padding: 100px 20px;
+  border-radius: 20px;
+  margin: 0 auto 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  transition: background-image 0.4s ease-in-out;
+  max-width: 100%;
+  width: 100%;
 
-    & input {
-      width: 90%;
-      max-width: 250px;
-    }
-
-    & button {
-      width: 90%;
-      max-width: 250px;
-    }
-
-    & ul {
-      padding-left: 0;
-    }
-
-    & li {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    & img {
-      width: 60px;
-    }
-
-    & a {
-      font-size: 16px;
-    }
+  & input {
+    height: 30px;
+    width: 90%;
+    max-width: 300px;
+    padding-left: 10px;
+    border-radius: 5px;
+    display: block;
+    margin: 0 auto 10px;
   }
 
-  @media (max-width: 480px) {
-    & h2 {
-      font-size: 28px;
-    }
-
-    & input {
-      width: 90%;
-      max-width: 200px;
-    }
-
-    & button {
-      width: 90%;
-      max-width: 200px;
-    }
-
-    & li {
-      margin-bottom: 15px;
-    }
-
-    & a {
-      font-size: 14px;
+  & button {
+    background-color: #184475;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    &:hover {
+      opacity: 0.9;
+      padding: 12px 22px;
     }
   }
 `;
@@ -133,6 +91,7 @@ const Home = () => {
   const API_KEY = '92a29a208697474804603c1dc44ad181';
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const [backgroundPoster, setBackgroundPoster] = useState(null);
 
   const handleSearch = () => {
     if (searchQuery.trim() === '') return;
@@ -154,10 +113,30 @@ const Home = () => {
     }
   };
 
+  useEffect(() => {
+    const fetchRandomBackdrop = () => {
+      fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.results.length > 0) {
+            const randomMovie =
+              data.results[Math.floor(Math.random() * data.results.length)];
+            setBackgroundPoster(randomMovie.backdrop_path);
+          }
+        })
+        .catch(err => console.error('Error loading backdrop:', err));
+    };
+
+    fetchRandomBackdrop(); // Imagen inicial
+    const intervalId = setInterval(fetchRandomBackdrop, 10000); // Cada 10 segundos
+
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
     <DivHome>
       <h2>Search Movies</h2>
-      <div>
+      <SearchBox bg={backgroundPoster}>
         <input
           type="text"
           placeholder="Enter keywords"
@@ -166,12 +145,10 @@ const Home = () => {
           onKeyDown={handleKeyDown}
         />
         <button onClick={handleSearch}>Search</button>
-      </div>
+      </SearchBox>
 
       {searchResults.length === 0 && searchQuery && (
-        <p style={{ color: 'white', marginLeft: '450px', marginTop: '20px' }}>
-          No results found.
-        </p>
+        <p style={{ color: 'white', textAlign: 'center' }}>No results found.</p>
       )}
 
       <ul>

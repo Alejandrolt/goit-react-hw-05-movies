@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link, Outlet } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const DivButton = styled.div`
@@ -74,22 +74,6 @@ const DivContent = styled.div`
   }
 `;
 
-const DivInfo = styled.div`
-  background-color: #d2e7fc;
-  height: 100%;
-  padding: 10px 20px;
-
-  & h3 {
-    font-size: 30px;
-    font-family: cursive;
-  }
-
-  @media (max-width: 768px) {
-    padding: 20px;
-    text-align: center;
-  }
-`;
-
 const MovieDetails = () => {
   const API_KEY = '92a29a208697474804603c1dc44ad181';
   const { movieId } = useParams();
@@ -134,18 +118,6 @@ const MovieDetails = () => {
           </DivContent>
         )}
       </div>
-      <DivInfo>
-        <h3>Additional Information</h3>
-        <ul>
-          <li>
-            <Link to="cast">Cast</Link>
-          </li>
-          <li>
-            <Link to="Reviews">Reviews</Link>
-          </li>
-        </ul>
-        <Outlet />
-      </DivInfo>
     </div>
   );
 };

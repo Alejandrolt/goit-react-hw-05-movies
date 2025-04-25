@@ -9,7 +9,7 @@ const DivMovies = styled.div`
     font-family: Baskerville;
     text-shadow: 1px 1px 4px Red;
     margin-bottom: 30px;
-    margin-left: 450px;
+    margin-left: 600px;
   }
 
   & ul {
@@ -112,7 +112,7 @@ const Movies = () => {
 
   return (
     <DivMovies>
-      <h2>Movies & TV Shows</h2>
+      <h2>Movies</h2>
       <ul>
         {popularMovies.map(movie => (
           <li key={movie.id}>
@@ -122,7 +122,7 @@ const Movies = () => {
                 alt={movie.title || movie.name}
               />
             ) : (
-              <img src="/public/img/placeholder.png" alt="No poster" />
+              <img src="/img/placeholder.png" alt="No poster" />
             )}
             <Link to={`/movies/${movie.id}`}>
               {movie.title || movie.name}
