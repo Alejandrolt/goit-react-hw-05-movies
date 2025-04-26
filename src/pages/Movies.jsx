@@ -6,14 +6,14 @@ const DivHome = styled.div`
   min-height: 100vh;
   background-color: black;
   color: white;
-  padding: 40px 20px;
+  padding: 0.2px 20px;
   box-sizing: border-box;
 
   & h2 {
     font-size: 50px;
     font-family: Baskerville;
     text-align: center;
-    text-shadow: 1px 1px 4px red;
+    text-shadow: 3px 3px 4px rgb(255, 3, 3);
     margin-bottom: 30px;
   }
 
@@ -53,7 +53,7 @@ const SearchBox = styled.div`
       : `url('https://image.tmdb.org/t/p/original/9ZpKrS2hWz2toYOu2aKIsngG3eN.jpg')`};
   background-size: cover;
   background-position: center;
-  padding: 100px 20px;
+  padding: 200px 0px;
   border-radius: 20px;
   margin: 0 auto 30px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);

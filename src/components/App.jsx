@@ -8,7 +8,7 @@ import Reviews from './Reviews';
 import styled from 'styled-components';
 
 const NavHeader = styled.nav`
-  height: 70px;
+  height: 50px;
   display: flex;
   justify-content: start;
   align-items: center;
