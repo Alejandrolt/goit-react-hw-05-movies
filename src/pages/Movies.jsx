@@ -128,7 +128,7 @@ const Home = () => {
     };
 
     fetchRandomBackdrop(); // Imagen inicial
-    const intervalId = setInterval(fetchRandomBackdrop, 5000); // Cada 10 segundos
+    const intervalId = setInterval(fetchRandomBackdrop, 5000); // Cada 5 segundos
 
     return () => clearInterval(intervalId);
   }, []);

@@ -91,7 +91,7 @@ const Movies = () => {
       try {
         let allResults = [];
 
-        for (let page = 1; page <= 30; page++) {
+        for (let page = 1; page <= 25; page++) {
           const response = await fetch(
             `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&page=${page}`
           );
