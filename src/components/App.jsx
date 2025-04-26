@@ -36,8 +36,8 @@ const App = () => {
   return (
     <div>
       <NavHeader>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/movies">Movies</NavLink>
+        <NavLink to="/">Inicio</NavLink>
+        <NavLink to="/movies">Biblioteca</NavLink>
       </NavHeader>
       <Routes>
         <Route path="/" element={<Movies />} />

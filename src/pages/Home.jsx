@@ -8,22 +8,23 @@ const DivMovies = styled.div`
     font-size: 40px;
     font-family: Baskerville;
     text-shadow: 1px 1px 4px Red;
-    margin-bottom: 30px;
+    margin-block: 10px;
     margin-left: 600px;
   }
 
   & ul {
     list-style: none;
-    padding: 0;
+    padding: 20px 0;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
+    background-color: black;
   }
 
   & li {
     width: 180px;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(247, 3, 3, 0.29);
     padding: 10px;
     border-radius: 10px;
     text-align: center;
@@ -90,7 +91,7 @@ const Movies = () => {
       try {
         let allResults = [];
 
-        for (let page = 1; page <= 10; page++) {
+        for (let page = 1; page <= 30; page++) {
           const response = await fetch(
             `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&page=${page}`
           );
@@ -112,7 +113,7 @@ const Movies = () => {
 
   return (
     <DivMovies>
-      <h2>Movies</h2>
+      <h2>Peliculas</h2>
       <ul>
         {popularMovies.map(movie => (
           <li key={movie.id}>

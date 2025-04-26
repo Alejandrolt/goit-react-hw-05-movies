@@ -90,7 +90,7 @@ const MovieDetails = () => {
     <div>
       <DivButton>
         <Link to="/">
-          <button>Go Back</button>
+          <button>Regresar</button>
         </Link>
       </DivButton>
       <div>

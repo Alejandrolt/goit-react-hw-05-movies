@@ -14,7 +14,7 @@ const DivHome = styled.div`
     font-family: Baskerville;
     text-align: center;
     text-shadow: 3px 3px 4px rgb(255, 3, 3);
-    margin-bottom: 30px;
+    margin-block: 10px;
   }
 
   & ul {
@@ -128,23 +128,23 @@ const Home = () => {
     };
 
     fetchRandomBackdrop(); // Imagen inicial
-    const intervalId = setInterval(fetchRandomBackdrop, 10000); // Cada 10 segundos
+    const intervalId = setInterval(fetchRandomBackdrop, 5000); // Cada 10 segundos
 
     return () => clearInterval(intervalId);
   }, []);
 
   return (
     <DivHome>
-      <h2>Search Movies</h2>
+      <h2>Busqueda Peliculas</h2>
       <SearchBox bg={backgroundPoster}>
         <input
           type="text"
-          placeholder="Enter keywords"
+          placeholder="Busqueda Por Titulo"
           value={searchQuery}
           onChange={e => setSearchQuery(e.target.value)}
           onKeyDown={handleKeyDown}
         />
-        <button onClick={handleSearch}>Search</button>
+        <button onClick={handleSearch}>Buscar</button>
       </SearchBox>
 
       {searchResults.length === 0 && searchQuery && (
